@@ -2,10 +2,11 @@ package controllers
 
 import (
 	"encoding/json"
-	"github.com/bright-poku/go-microservice/mvc/services"
-	"github.com/bright-poku/go-microservice/mvc/utils"
 	"net/http"
 	"strconv"
+
+	"github.com/bright-poku/go-microservice/mvc/services"
+	"github.com/bright-poku/go-microservice/mvc/utils"
 )
 
 func GetUser(resp http.ResponseWriter, req *http.Request) {

@@ -2,8 +2,9 @@ package domain
 
 import (
 	"fmt"
-	"github.com/bright-poku/go-microservice/mvc/utils"
 	"net/http"
+
+	"github.com/bright-poku/go-microservice/mvc/utils"
 )
 
 var (
