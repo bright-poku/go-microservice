@@ -3,21 +3,30 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/bright-poku/go-microservice/mvc/services"
+	"github.com/bright-poku/go-microservice/mvc/utils"
 	"net/http"
 	"strconv"
 )
 
 func GetUser(resp http.ResponseWriter, req *http.Request) {
-	userIdParam := req.URL.Query().Get("user_id")
-	userId, err := strconv.ParseInt(userIdParam, 10, 64)
+	userId, err := strconv.ParseInt(req.URL.Query().Get("user_id"), 10, 64)
 	if err != nil {
+		appErr := &utils.AppError{
+			Message:    "user_id must be a number",
+			StatusCode: http.StatusBadRequest,
+			Code:       "bad request",
+		}
+		jsonVal, _ := json.Marshal(appErr)
+		resp.WriteHeader(appErr.StatusCode)
+		resp.Write(jsonVal)
 		return
 	}
 
-	user, err := services.GetUser(userId)
-	if err != nil {
-		resp.WriteHeader(http.StatusBadRequest)
-		resp.Write([]byte(err.Error()))
+	user, appErr := services.GetUser(userId)
+	if appErr != nil {
+		jsonVal, _ := json.Marshal(appErr)
+		resp.WriteHeader(appErr.StatusCode)
+		resp.Write([]byte(jsonVal))
 		return
 	}
 	//return content type of response
