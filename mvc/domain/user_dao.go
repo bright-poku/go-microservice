@@ -11,9 +11,15 @@ var (
 	users = map[int64]*User {
 		123: {
 			Id:        123,
-			FirstName: "bright",
-			LastName:  "poku",
-			Email:     "bap8000@gmail.com",
+			FirstName: "john",
+			LastName:  "doe",
+			Email:     "johndoe@gmail.com",
+		},
+		125: {
+			Id:        123,
+			FirstName: "mary",
+			LastName:  "doe",
+			Email:     "marydoe@gmail.com",
 		},
 	}
 )
