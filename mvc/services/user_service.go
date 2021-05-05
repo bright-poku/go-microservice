@@ -5,6 +5,14 @@ import (
 	"github.com/bright-poku/go-microservice/mvc/utils"
 )
 
-func GetUser(userId int64) (*domain.User, *utils.AppError) {
+type userService struct {
+
+}
+
+var (
+	usersService userService
+)
+
+func (u *userService) GetUser(userId int64) (*domain.User, *utils.AppError) {
 	return domain.GetUser(userId)
 }

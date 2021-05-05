@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	users = map[int64]*User {
+	users = map[int64]*User{
 		123: {
 			Id:        123,
 			FirstName: "john",
@@ -16,7 +16,7 @@ var (
 			Email:     "johndoe@gmail.com",
 		},
 		125: {
-			Id:        123,
+			Id:        125,
 			FirstName: "mary",
 			LastName:  "doe",
 			Email:     "marydoe@gmail.com",
@@ -31,6 +31,6 @@ func GetUser(userId int64) (*User, *utils.AppError) {
 	return nil, &utils.AppError{
 		Message:    fmt.Sprintf("user %v was not found", userId),
 		StatusCode: http.StatusNotFound,
-		Code:       "not_founud",
+		Code:       "not_found",
 	}
 }

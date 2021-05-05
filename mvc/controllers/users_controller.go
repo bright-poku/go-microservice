@@ -2,6 +2,8 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -17,17 +19,23 @@ func GetUser(resp http.ResponseWriter, req *http.Request) {
 			StatusCode: http.StatusBadRequest,
 			Code:       "bad request",
 		}
-		jsonVal, _ := json.Marshal(appErr)
+		jsonVal, err := json.Marshal(appErr)
+		if err != nil {
+			log.Fatal(err)
+		}
 		resp.WriteHeader(appErr.StatusCode)
 		resp.Write(jsonVal)
 		return
 	}
 
-	user, appErr := services.GetUser(userId)
+	user, appErr := services.
 	if appErr != nil {
 		jsonVal, _ := json.Marshal(appErr)
 		resp.WriteHeader(appErr.StatusCode)
-		resp.Write([]byte(jsonVal))
+		_, err := resp.Write([]byte(jsonVal))
+		if err != nil {
+			fmt.Println(err)
+		}
 		return
 	}
 	//return content type of response
