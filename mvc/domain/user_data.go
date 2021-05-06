@@ -22,12 +22,26 @@ var (
 			Email:     "marydoe@gmail.com",
 		},
 	}
+
+	UserData userDataInterface
 )
 
-func GetUser(userId int64) (*User, *utils.AppError) {
+func init() {
+	UserData = &userData{}
+}
+
+type userDataInterface interface {
+	GetUser(int64) (*User, *utils.AppError)
+}
+
+type userData struct {
+}
+
+func (s *userData) GetUser(userId int64) (*User, *utils.AppError) {
 	if user := users[userId]; user != nil {
 		return user, nil
 	}
+
 	return nil, &utils.AppError{
 		Message:    fmt.Sprintf("user %v was not found", userId),
 		StatusCode: http.StatusNotFound,
