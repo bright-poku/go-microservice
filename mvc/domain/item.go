@@ -1,8 +1,8 @@
 package domain
 
 type Item struct {
-	Id 			uint64 `json:"id"`
-	FirstName 	string `json:"first_name"`
-	LastName 	string `json:"last_name"`
+	Name 			uint64 `json:"name"`
+	Description 	string `json:"description"`
+	Homepage 	string `json:"homepage"`
 	Email 		string `json:"email"`
 }
